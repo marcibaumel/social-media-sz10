@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h4 *ngIf="user">Post of {{user.name}}</h4>
+  </div>
+
+  <div class="col-md-8" *ngFor="let post of posts; index as i">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-end">
+          <button class="btn btn-danger" (click)="onDeletePost(i)">Delete</button>
+        </div>
+
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.body}}</p>
+        <a class="link-primary" (click)="loadComments(i)" *ngIf="!post.comments">Load comments..</a>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let comment of post.comments">
+            {{comment.email}} said: <br>
+            {{comment.body}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
